@@ -28,7 +28,6 @@ public class Vector3fNormalizePartitionTest {
         assertEquals(0.8f, result.y, EPS);
         assertEquals(0f, result.z, EPS);
 
-        // Original should remain unchanged
         assertEquals(3f, v.x, EPS);
         assertEquals(4f, v.y, EPS);
     }

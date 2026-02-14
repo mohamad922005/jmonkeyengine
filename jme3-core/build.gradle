@@ -45,3 +45,23 @@ task updateVersionPropertiesFile {
 }
 
 processResources.dependsOn updateVersionPropertiesFile
+
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.11"
+}
+
+test {
+    useJUnit()                 
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    executionData(test)         
+    reports {
+        html.required = true
+        xml.required = true
+    }
+}
