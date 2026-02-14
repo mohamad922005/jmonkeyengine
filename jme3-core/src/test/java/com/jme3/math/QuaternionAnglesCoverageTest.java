@@ -14,8 +14,6 @@ import static org.junit.Assert.*;
  *  - Quaternion#toAngles(float[]) singularity branches (north pole / south pole / general case)
  *  - Quaternion#fromRotationMatrix(...) scaling-compensation branches
  *
- * Place this file at:
- *   jme3-core/src/test/java/com/jme3/math/QuaternionAnglesCoverageTest.java
  */
 public class QuaternionAnglesCoverageTest {
 
