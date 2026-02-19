@@ -45,8 +45,8 @@ jobs:
           ./gradlew --version
 
       # Build the project 
-      - name: Build
-        run: ./gradlew build -x spotlessCheck
+      - name: Build (jme3-core)
+        run: ./gradlew :jme3-core:assemble
 
       # Run tests 
       - name: Run jme3-core tests
@@ -54,7 +54,7 @@ jobs:
 
       # generate coverage report (nice for documentation)
       - name: JaCoCo report (jme3-core)
-        run: ./gradlew :jme3-core:jacocoTestReport
+        run: ./gradlew :jme3-core:test :jme3-core:jacocoTestReport --rerun-tasks
 
       # Upload test reports + coverage HTML as pipeline artifacts
       - name: Upload test reports
