@@ -43,21 +43,24 @@ subprojects {
         apply from: rootProject.file('common-android-app.gradle')
     }
 
-    if (!project.name.endsWith("-native") && enableSpotBugs != "false" ) {
+    // SpotBugs for all non-native modules unless disabled
+    if (!project.name.endsWith("-native") && enableSpotBugs != "false") {
         apply plugin: 'com.github.spotbugs'
 
-        // Currently we only warn about issues and try to fix them as we go, but those aren't mission critical.
         spotbugs {
             ignoreFailures = true
             toolVersion = '4.8.6'
+            showProgress = true
         }
 
-        tasks.withType(com.github.spotbugs.snom.SpotBugsTask ) {
-            reports {
-                html.enabled = !project.hasProperty("xml-reports")
-                xml.enabled = project.hasProperty("xml-reports")
-            }
-        }
+        // Configure reports for ALL SpotBugs tasks (main + test)
+       tasks.withType(com.github.spotbugs.snom.SpotBugsTask).configureEach {
+    reports {
+        // Default: HTML unless xml-reports is passed
+        html.enabled = !project.hasProperty("xml-reports")
+        xml.enabled  =  project.hasProperty("xml-reports")
+    }
+}
     }
 }
 

@@ -52,7 +52,7 @@ public class Vector3fNormalizeFsmTest {
     // --- Start -> Scale (finite lenSq != 0,1) ---
     @Test
     public void testNonUnitFiniteVector_scalesToUnit() {
-        Vector3f v = new Vector3f(3f, 4f, 0f); // len = 5
+        Vector3f v = new Vector3f(3f, 4f, 0f);
         Vector3f r = v.normalize();
 
         assertNotSame("normalize() should return a new instance", v, r);
